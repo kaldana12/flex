@@ -4,12 +4,12 @@
   padding: 32px 40px 28px;
   justify-content: space-between;
   background-color: #000;
-  width: 100%;
+  width: 100vw;
 }
 
 .header__container {
   max-width: 1200px;
-  margin: 0 auto;
+  margin: 0;
   padding: 0 20px;
   display: flex;
   align-items: center;
