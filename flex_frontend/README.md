@@ -2,7 +2,7 @@
 
 This is the frontend for **Flex**, a responsive fitness workout browser that lets users search exercises, view details, and "like" workouts to save them for later. Built with **React** and **Vite**, and designed to work with mocked backend responses for seamless testing and development.
 
-> Deployed on:
+> Deployed on: https://kaldana12.github.io/flex/
 
 ---
 
