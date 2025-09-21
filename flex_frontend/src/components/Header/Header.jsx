@@ -1,8 +1,8 @@
-import { useState } from "react";
 import { Link } from "react-router-dom";
 import logo from "../../assets/flexlogowhite.png";
 import "./Header.css";
 import Navigation from "../Navigation/Navigation";
+import { SEARCH_PLACEHOLDER } from "../../config/constants";
 
 function Header({
   onSignUpClick,
@@ -29,19 +29,21 @@ function Header({
         </Link>
       </div>
 
-      <Navigation />
+      <nav>
+        <Navigation />
+      </nav>
 
       <div className="header__right">
         <form className="header__search-form" onSubmit={handleSearchSubmit}>
           <input
             type="text"
             className="header__search-input"
-            placeholder="Search..."
+            placeholder={SEARCH_PLACEHOLDER}
             value={searchQuery}
             onChange={handleSearchChange}
           />
           <button type="submit" className="header__search-button">
-            🔍
+            Go
           </button>
         </form>
 

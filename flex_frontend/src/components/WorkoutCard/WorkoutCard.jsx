@@ -1,10 +1,10 @@
 import "./WorkoutCard.css";
-import likeFilled from "../../assets/likedbutton.svg"; // Your liked heart image
-import likeOutline from "../../assets/likebutton.svg"; // Your unliked heart image
+import likeFilled from "../../assets/likedbutton.svg";
+import likeOutline from "../../assets/likebutton.svg";
 
 function WorkoutCard({ workout, onClick, isLiked, onLikeWorkout }) {
   return (
-    <div className="Workout__block">
+    <div className="workout">
       <div className="workout__card" onClick={() => onClick(workout)}>
         <h3>{workout.name}</h3>
         <p>

@@ -4,11 +4,12 @@
   padding: 32px 40px 28px;
   justify-content: space-between;
   background-color: #000;
-  width: 100vw;
+  box-sizing: border-box;
+  flex-wrap: wrap;
+  width: 100%;
 }
 
 .header__container {
-  max-width: 1200px;
   margin: 0;
   padding: 0 20px;
   display: flex;
@@ -69,4 +70,30 @@
   border-radius: 100px;
   border: none;
   cursor: pointer;
+}
+
+@media (max-width: 480px) {
+  .header {
+    padding: 16px 20px;
+  }
+
+  .header__signup-btn,
+  .header__login-btn {
+    padding: 12px 20px;
+    font-size: 10px;
+  }
+
+  .header__right {
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .header__user-container {
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .header__search-input {
+    width: 100px;
+  }
 }

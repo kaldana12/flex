@@ -2,15 +2,16 @@ import { useState } from "react";
 import { mockRegister } from "../../utils/mockApi";
 import ModalWithForm from "../ModalWithForm/ModalWithForm.jsx";
 import "./RegisterModal.css";
+import { REGISTRATION_ERROR_MESSAGE } from "../../config/constants";
 
-function RegisterModal({ isOpen, onClose, onSubmit, onSwitchToLogin }) {
+function RegisterModal({ isOpen, onClose, onSwitchToLogin }) {
   const [values, setValues] = useState({
     username: "",
     email: "",
     password: "",
   });
 
-  const [registerError, setRegisterError] = useState("");
+  const [setRegisterError] = useState("");
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -29,7 +30,7 @@ function RegisterModal({ isOpen, onClose, onSubmit, onSwitchToLogin }) {
       onClose();
     } catch (err) {
       console.error("Registration error:", err);
-      setRegisterError("Registration failed. Please try again.");
+      setRegisterError(REGISTRATION_ERROR_MESSAGE);
     }
   };
 

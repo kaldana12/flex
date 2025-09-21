@@ -18,7 +18,7 @@ function WorkoutCardsList({
   if (hasSearched && workouts.length === 0) {
     return (
       <div className="workout-cards__not-found">
-        <p>No workouts found for "{searchTerm}"</p>
+        <p>No workouts found for &quot;{searchTerm}&quot;</p>
         <p>Try searching for different muscles or exercise names.</p>
       </div>
     );

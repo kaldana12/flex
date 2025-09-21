@@ -1,16 +1,16 @@
 import { useState, useEffect } from "react";
 import { getExerciseInfo } from "../../utils/wgerApi";
-import {
-  getSavedWorkouts,
-  saveWorkout,
-  removeSavedWorkout,
-} from "../../utils/mockApi";
 import WorkoutCard from "../WorkoutCard/WorkoutCard";
 import WorkoutModal from "../WorkoutModal/WorkoutModal";
 import Preloader from "../Preloader/Preloader";
 import "./Main.css";
+import {
+  MAX_VISIBLE_EXERCISES,
+  VISIBLE_INCREMENT,
+  ERROR_FETCHING_EXERCISES,
+} from "../../config/constants";
 
-function Main({ isLoggedIn, onLikeWorkout, likedWorkouts, searchQuery }) {
+function Main({ onLikeWorkout, likedWorkouts, searchQuery }) {
   const [exercises, setExercises] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [selectedWorkout, setSelectedWorkout] = useState(null);
@@ -18,16 +18,14 @@ function Main({ isLoggedIn, onLikeWorkout, likedWorkouts, searchQuery }) {
   const [visibleCount, setVisibleCount] = useState(3);
 
   useEffect(() => {
-    getExerciseInfo(20)
+    getExerciseInfo(MAX_VISIBLE_EXERCISES)
       .then((data) => {
         setExercises(data);
         setError("");
       })
       .catch((err) => {
         console.error("Failed to fetch exercises:", err);
-        setError(
-          "Sorry, something went wrong during the request. There may be a connection issue or the server may be down. Please try again later."
-        );
+        setError(ERROR_FETCHING_EXERCISES);
       })
       .finally(() => setIsLoading(false));
   }, []);
@@ -50,16 +48,16 @@ function Main({ isLoggedIn, onLikeWorkout, likedWorkouts, searchQuery }) {
 
   return (
     <main className="main">
-      <h1 className="card__name">Welcome to Flex!</h1>
-      <section className="exercises">
+      <h1 className="main__name">Welcome to Flex!</h1>
+      <section className="main__exercises">
         <h2>Available Exercises</h2>
-        <div className="exercises__grid">
+        <div className="main__grid">
           {isLoading ? (
             <Preloader />
           ) : error ? (
-            <p className="error__message">{error}</p>
+            <p className="main__error-message">{error}</p>
           ) : exercises.length === 0 ? (
-            <p className="no__results">Nothing found</p>
+            <p className="main__no-results">Nothing found</p>
           ) : (
             <>
               {filteredExercises.slice(0, visibleCount).map((exercise) => (
@@ -73,8 +71,10 @@ function Main({ isLoggedIn, onLikeWorkout, likedWorkouts, searchQuery }) {
               ))}
               {visibleCount < filteredExercises.length && (
                 <button
-                  className="show-more__btn"
-                  onClick={() => setVisibleCount((prev) => prev + 3)}
+                  className="main__showmore-btn"
+                  onClick={() =>
+                    setVisibleCount((prev) => prev + VISIBLE_INCREMENT)
+                  }
                 >
                   Show more
                 </button>

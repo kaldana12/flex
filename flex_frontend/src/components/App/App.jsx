@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import {
   mockLogin,
   checkToken,
-  mockLogout,
   saveWorkout,
   removeSavedWorkout,
   getSavedWorkouts,
@@ -100,62 +99,66 @@ function App() {
         searchQuery={searchQuery}
         setSearchQuery={setSearchQuery}
       />
-
-      <Routes>
-        <Route
-          path="/"
-          element={
-            <Main
-              isLoggedIn={isLoggedIn}
-              onLikeWorkout={handleLikeWorkout}
-              likedWorkouts={likedWorkouts}
-              setLikedWorkouts={setLikedWorkouts}
-              searchQuery={searchQuery}
+      <main className="app__main">
+        <div className="app__container">
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <Main
+                  isLoggedIn={isLoggedIn}
+                  onLikeWorkout={handleLikeWorkout}
+                  likedWorkouts={likedWorkouts}
+                  setLikedWorkouts={setLikedWorkouts}
+                  searchQuery={searchQuery}
+                />
+              }
             />
-          }
-        />
-        <Route
-          path="/profile"
-          element={
-            <Profile
-              likedWorkouts={likedWorkouts}
-              isLoggedIn={isLoggedIn}
-              onLikeWorkout={handleLikeWorkout}
+            <Route
+              path="/profile"
+              element={
+                <Profile
+                  likedWorkouts={likedWorkouts}
+                  isLoggedIn={isLoggedIn}
+                  onLikeWorkout={handleLikeWorkout}
+                />
+              }
             />
-          }
-        />
-      </Routes>
+          </Routes>
 
-      <RegisterModal
-        isOpen={isRegisterOpen}
-        onClose={handleRegisterClose}
-        onSubmit={(formData) => {
-          console.log("Registering:", formData);
-          handleLoginSuccess();
-        }}
-      />
+          <RegisterModal
+            isOpen={isRegisterOpen}
+            onClose={handleRegisterClose}
+            onSubmit={(formData) => {
+              console.log("Registering:", formData);
+              handleLoginSuccess();
+            }}
+          />
 
-      <LoginModal
-        isOpen={isLoginOpen}
-        onClose={handleLoginClose}
-        loginError={loginError}
-        onSubmit={async (formData) => {
-          try {
-            setLoginError("");
-            console.log("Attempting login:", formData);
-            const response = await mockLogin(
-              formData.username,
-              formData.password
-            );
-            console.log("Login successful:", response);
-            handleLoginSuccess();
-          } catch (error) {
-            console.error("Login failed:", error.message);
-            handleLoginError("Invalid username or password. Please try again.");
-          }
-        }}
-      />
-
+          <LoginModal
+            isOpen={isLoginOpen}
+            onClose={handleLoginClose}
+            loginError={loginError}
+            onSubmit={async (formData) => {
+              try {
+                setLoginError("");
+                console.log("Attempting login:", formData);
+                const response = await mockLogin(
+                  formData.username,
+                  formData.password
+                );
+                console.log("Login successful:", response);
+                handleLoginSuccess();
+              } catch (error) {
+                console.error("Login failed:", error.message);
+                handleLoginError(
+                  "Invalid username or password. Please try again."
+                );
+              }
+            }}
+          />
+        </div>
+      </main>
       <Footer />
     </div>
   );

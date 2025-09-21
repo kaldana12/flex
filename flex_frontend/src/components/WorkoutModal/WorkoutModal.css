@@ -1,4 +1,4 @@
-.modal-overlay__workout {
+.modalworkout__overlay {
   position: fixed;
   top: 0;
   left: 0;
@@ -11,7 +11,7 @@
   z-index: 1000;
 }
 
-.modal__workout {
+.modalworkout__workout {
   background: white;
   padding: 2rem;
   border-radius: 8px;
@@ -21,7 +21,7 @@
   position: relative;
 }
 
-.modal__close-workout {
+.modalworkout__close-workout {
   position: absolute;
   top: 8px;
   right: 12px;
@@ -31,7 +31,7 @@
   cursor: pointer;
 }
 
-.modal__image {
+.modalworkout__image {
   max-width: 100%;
   margin-top: 1rem;
   border-radius: 4px;

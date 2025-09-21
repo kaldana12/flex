@@ -2,11 +2,13 @@
   border: 1px solid #ddd;
   border-radius: 16px;
   padding: 20px;
-  width: 300px;
+  width: 100%;
   background-color: #fff;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
   transition: transform 0.2s ease;
   cursor: pointer;
+  max-width: 300px;
+  box-sizing: border-box;
 }
 
 .workout-card:hover {

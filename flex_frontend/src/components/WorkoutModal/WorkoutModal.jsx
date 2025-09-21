@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { getExerciseImage, getExerciseAliases } from "../../utils/wgerApi";
 import "./WorkoutModal.css";
+import { MODAL_CLOSE_KEY } from "../../config/constants";
 
 function WorkoutModal({ workout, onClose }) {
   const [imageUrl, setImageUrl] = useState(null);
@@ -25,12 +26,29 @@ function WorkoutModal({ workout, onClose }) {
     }
   }, [workout]);
 
+  useEffect(() => {
+    const handleEscKey = (e) => {
+      if (e.key === MODAL_CLOSE_KEY) {
+        onClose();
+      }
+    };
+
+    document.addEventListener("keydown", handleEscKey);
+
+    return () => {
+      document.removeEventListener("keydown", handleEscKey);
+    };
+  }, [onClose]);
+
   if (!workout) return null;
 
   return (
-    <div className="modal-overlay__workout" onClick={onClose}>
-      <div className="modal__workout" onClick={(e) => e.stopPropagation()}>
-        <button className="modal__close-workout" onClick={onClose}>
+    <div className="modalworkout__overlay" onClick={onClose}>
+      <div
+        className="modalworkout__workout"
+        onClick={(e) => e.stopPropagation()}
+      >
+        <button className="modalworkout__close-workout" onClick={onClose}>
           &times;
         </button>
         <h2>{workout.name}</h2>
@@ -75,7 +93,11 @@ function WorkoutModal({ workout, onClose }) {
         )}
 
         {imageUrl && (
-          <img src={imageUrl} alt={workout.name} className="modal__image" />
+          <img
+            src={imageUrl}
+            alt={workout.name}
+            className="modalworkout__image"
+          />
         )}
       </div>
     </div>

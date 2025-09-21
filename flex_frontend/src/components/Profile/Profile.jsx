@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import WorkoutCard from "../WorkoutCard/WorkoutCard";
 import WorkoutModal from "../WorkoutModal/WorkoutModal";
 import "./Profile.css";
@@ -15,17 +15,17 @@ function Profile({ likedWorkouts, isLoggedIn, onLikeWorkout }) {
   };
 
   return (
-    <main className="main">
+    <main className="profile">
       <h1>Profile</h1>
 
       {!isLoggedIn ? (
         <p>Please log in to view your saved workouts.</p>
       ) : likedWorkouts.length === 0 ? (
-        <p>You haven't liked any workouts yet.</p>
+        <p>You have not liked any workouts yet.</p>
       ) : (
-        <section className="exercises">
+        <section className="profile__exercises">
           <h2>Saved Workouts</h2>
-          <div className="exercises__grid">
+          <div className="profile__grid">
             {likedWorkouts.map((workout) => (
               <WorkoutCard
                 key={workout.id}
