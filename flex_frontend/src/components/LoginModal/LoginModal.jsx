@@ -1,7 +1,13 @@
 import { useState } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm.jsx";
 
-function LoginModal({ isOpen, onClose, onSubmit, loginError }) {
+function LoginModal({
+  isOpen,
+  onClose,
+  onSubmit,
+  loginError,
+  onSwitchToRegister,
+}) {
   const [values, setValues] = useState({
     username: "",
     password: "",
@@ -60,6 +66,14 @@ function LoginModal({ isOpen, onClose, onSubmit, loginError }) {
           }
         >
           Login
+        </button>
+
+        <button
+          type="button"
+          className="modal__link-button"
+          onClick={onSwitchToRegister}
+        >
+          or Register
         </button>
       </div>
     </ModalWithForm>

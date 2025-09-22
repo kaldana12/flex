@@ -51,15 +51,15 @@ function Main({ onLikeWorkout, likedWorkouts, searchQuery }) {
       <h1 className="main__name">Welcome to Flex!</h1>
       <section className="main__exercises">
         <h2>Available Exercises</h2>
-        <div className="main__grid">
-          {isLoading ? (
-            <Preloader />
-          ) : error ? (
-            <p className="main__error-message">{error}</p>
-          ) : exercises.length === 0 ? (
-            <p className="main__no-results">Nothing found</p>
-          ) : (
-            <>
+        {isLoading ? (
+          <Preloader />
+        ) : error ? (
+          <p className="main__error-message">{error}</p>
+        ) : exercises.length === 0 ? (
+          <p className="main__no-results">Nothing found</p>
+        ) : (
+          <>
+            <div className="main__grid">
               {filteredExercises.slice(0, visibleCount).map((exercise) => (
                 <WorkoutCard
                   key={exercise.id}
@@ -69,7 +69,10 @@ function Main({ onLikeWorkout, likedWorkouts, searchQuery }) {
                   onLikeWorkout={onLikeWorkout}
                 />
               ))}
-              {visibleCount < filteredExercises.length && (
+            </div>
+
+            {visibleCount < filteredExercises.length && (
+              <div className="main__showmore-wrapper">
                 <button
                   className="main__showmore-btn"
                   onClick={() =>
@@ -78,10 +81,10 @@ function Main({ onLikeWorkout, likedWorkouts, searchQuery }) {
                 >
                   Show more
                 </button>
-              )}
-            </>
-          )}
-        </div>
+              </div>
+            )}
+          </>
+        )}
       </section>
 
       {selectedWorkout && (

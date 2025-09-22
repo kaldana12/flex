@@ -9,6 +9,7 @@
   cursor: pointer;
   max-width: 300px;
   box-sizing: border-box;
+  height: 100%;
 }
 
 .workout-card:hover {
@@ -52,6 +53,7 @@
 .like__button {
   border: none;
   background-color: #fff;
+  cursor: pointer;
 }
 
 .like__button:hover {

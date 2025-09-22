@@ -45,6 +45,16 @@ function App() {
       });
   }, []);
 
+  const switchToLogin = () => {
+    setIsRegisterOpen(false);
+    setIsLoginOpen(true);
+  };
+
+  const switchToRegister = () => {
+    setIsLoginOpen(false);
+    setIsRegisterOpen(true);
+  };
+
   // Modal handlers
   const handleRegisterOpen = () => setIsRegisterOpen(true);
   const handleRegisterClose = () => setIsRegisterOpen(false);
@@ -99,7 +109,7 @@ function App() {
         searchQuery={searchQuery}
         setSearchQuery={setSearchQuery}
       />
-      <main className="app__main">
+      <div className="app__main">
         <div className="app__container">
           <Routes>
             <Route
@@ -129,6 +139,7 @@ function App() {
           <RegisterModal
             isOpen={isRegisterOpen}
             onClose={handleRegisterClose}
+            onSwitchToLogin={switchToLogin}
             onSubmit={(formData) => {
               console.log("Registering:", formData);
               handleLoginSuccess();
@@ -139,6 +150,7 @@ function App() {
             isOpen={isLoginOpen}
             onClose={handleLoginClose}
             loginError={loginError}
+            onSwitchToRegister={switchToRegister}
             onSubmit={async (formData) => {
               try {
                 setLoginError("");
@@ -158,7 +170,7 @@ function App() {
             }}
           />
         </div>
-      </main>
+      </div>
       <Footer />
     </div>
   );
