@@ -1,0 +1,10 @@
+.profile {
+  flex-grow: 1;
+}
+
+.profile__grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin: 40px;
+}

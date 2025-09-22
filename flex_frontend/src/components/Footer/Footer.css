@@ -1,0 +1,19 @@
+.footer {
+  margin-top: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 42px 24px 40px;
+  font-size: 12px;
+  color: #fff;
+  font-family: "Inter bold";
+  line-height: 20px;
+  background-color: #000;
+  box-sizing: border-box;
+  flex-wrap: wrap;
+}
+
+.footer__name,
+.footer__year {
+  margin: 0;
+}
